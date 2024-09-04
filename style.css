@@ -1,8 +1,8 @@
 :root {
-    --header-blue: #ffe600;
-    --button-blue: #0c10f7;
+    --header-blue: #0044ff;
+    --button-blue: #4072cf;
     --button-gray: #bec3c7;
-    --button-red: #ec1313;
+    --button-red: #dd3939;
     --card-blue: #313d64;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 header {
-    background: rgb(14, 3, 87);
+    background: rgb(13,1,97);
     background: linear-gradient(90deg, rgba(13,1,97,1) 0%, rgba(11,86,199,1) 41%, rgba(0,199,240,1) 100%);
     color: white;
     display: flex;

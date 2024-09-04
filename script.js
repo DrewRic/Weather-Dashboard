@@ -1,5 +1,3 @@
-const apiKey = '024d76245652e89c24c3b8e04365f5e7';
-
 var searchButton = document.getElementById("search-button");
 var clearButton = document.getElementById("clear-button");
 var historyList;
@@ -65,12 +63,16 @@ function clearHistory()
     historyList = [];
 }
 
+/*
+    Displays today's forecast for the given city.
+    Calls get5DayForecast().
+*/
 function getTodaysForecast(cityName)
 {
     // CREATES TODAY'S FORECAST
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=024d76245652e89c24c3b8e04365f5e7")
     .then(response => response.json())
-    .then(data => {
+    .then(data => {  
         // Header containing city name, today's date, and weather icon. 
         var cityHeader = document.getElementById("city-header");
         cityHeader.innerHTML = data.name + " (" + getCurrentDate() + ")";
@@ -78,8 +80,8 @@ function getTodaysForecast(cityName)
 
         // Weather Icon
         var icon0 = document.getElementById("icon-0");
-        icon0.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
-        icon0.alt = `${data.list[0].weather[0].main} (${data.list[0].weather[0].description})`;
+        icon0.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+        icon0.alt = data.weather[0].main + " (" + data.weather[0].description + ")";
 
         // Temperature
         const nodeTemp0 = document.createElement("p");
@@ -106,12 +108,16 @@ function getTodaysForecast(cityName)
     .catch(err => alert("Unable To Retrieve Weather: Check that city spelling is correct."))
 }
 
+/*
+    Displays the 5 day forecast for the given city.
+    Takes the city and stores it in search history.
+*/
 function get5DayForecast(cityName)
 {
     // CREATES 5 DAY FORECAST
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=024d76245652e89c24c3b8e04365f5e7")
     .then(response => response.json())
-    .then(data => {
+    .then(data => { 
         cityName = data.name;
         var dayCount = 0;
         var dtArray = data.list[0].dt_txt.split(" ");
@@ -119,6 +125,7 @@ function get5DayForecast(cityName)
         for(let i = 0; i < data.list.length && dayCount < 5; i++)
         {
             // Only grab 5 day forecast from data.list if the time is 12pm and the date isn't today.
+            // Ensures that the weather is only grabbed once per day for 5 day forecast and today's forecast isn't grabbed again. 
             if (data.list[i].dt_txt.includes("12:00:00")) {              
                 dayCount++;
 
@@ -127,8 +134,8 @@ function get5DayForecast(cityName)
                 let dateHeader = document.getElementById("date-header-" + dayCount);
                 dateHeader.innerHTML = nthDate;
                 let icon = document.getElementById("icon-" + dayCount);
-                icon0.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
-                icon0.alt = `${data.list[0].weather[0].main} (${data.list[0].weather[0].description})`;
+                icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+                icon.alt = data.list[i].weather[0].main + " (" + data.list[i].weather[0].description + ")";
 
                 // Temperature
                 let nodeTemp = document.createElement("p");
@@ -151,6 +158,7 @@ function get5DayForecast(cityName)
         }
 
         // ADD CITY TO HISTORY
+        // Converts user's entered city to proper format from OpenWeather and adds it to history.
         cityName = data.city.name;
         if (historyList.includes(cityName) === false) {
             // If history is less than 10, push the new city to the end of the array.
