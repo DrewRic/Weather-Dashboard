@@ -3,7 +3,7 @@
 Challenge 06 Assignment for Coding Bootcamp creates a weather dashboard with a 5 day forecast using the OpenWeather 5 day weather forecast API. Contains a search bar for city specific weather and search history to remember user searches.
 
 ## Usage
-The user can search for a specific city in the search bar to see it's 5 day forecast. Any cities searched are stored in search history in local storage. The user can click on any recently searched city below the search bar to more convenienty check its forecast.
+The user can search for a specific city in the search bar to see the city's current weather as well as the 5 day forecast. Any cities searched are stored in search history in local storage for the user can conveniently check a previous forecast.
 
 ## Visuals
 
