@@ -78,8 +78,8 @@ function getTodaysForecast(cityName)
 
         // Weather Icon
         var icon0 = document.getElementById("icon-0");
-        icon0.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-        icon0.alt = data.weather[0].main + " (" + data.weather[0].description + ")";
+        icon0.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+        icon0.alt = `${data.list[0].weather[0].main} (${data.list[0].weather[0].description})`;
 
         // Temperature
         const nodeTemp0 = document.createElement("p");
@@ -127,8 +127,8 @@ function get5DayForecast(cityName)
                 let dateHeader = document.getElementById("date-header-" + dayCount);
                 dateHeader.innerHTML = nthDate;
                 let icon = document.getElementById("icon-" + dayCount);
-                icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
-                icon.alt = data.list[i].weather[0].main + " (" + data.list[i].weather[0].description + ")";
+                icon0.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+                icon0.alt = `${data.list[0].weather[0].main} (${data.list[0].weather[0].description})`;
 
                 // Temperature
                 let nodeTemp = document.createElement("p");
