@@ -63,10 +63,6 @@ function clearHistory()
     historyList = [];
 }
 
-/*
-    Displays today's forecast for the given city.
-    Calls get5DayForecast().
-*/
 function getTodaysForecast(cityName)
 {
     // CREATES TODAY'S FORECAST
@@ -108,10 +104,6 @@ function getTodaysForecast(cityName)
     .catch(err => alert("Unable To Retrieve Weather: Check that city spelling is correct."))
 }
 
-/*
-    Displays the 5 day forecast for the given city.
-    Takes the city and stores it in search history.
-*/
 function get5DayForecast(cityName)
 {
     // CREATES 5 DAY FORECAST
@@ -124,8 +116,6 @@ function get5DayForecast(cityName)
         var currentDate = dtArray[0];
         for(let i = 0; i < data.list.length && dayCount < 5; i++)
         {
-            // Only grab 5 day forecast from data.list if the time is 12pm and the date isn't today.
-            // Ensures that the weather is only grabbed once per day for 5 day forecast and today's forecast isn't grabbed again. 
             if (data.list[i].dt_txt.includes("12:00:00")) {              
                 dayCount++;
 
@@ -158,7 +148,6 @@ function get5DayForecast(cityName)
         }
 
         // ADD CITY TO HISTORY
-        // Converts user's entered city to proper format from OpenWeather and adds it to history.
         cityName = data.city.name;
         if (historyList.includes(cityName) === false) {
             // If history is less than 10, push the new city to the end of the array.

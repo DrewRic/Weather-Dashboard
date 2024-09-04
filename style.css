@@ -1,9 +1,9 @@
 :root {
     --header-blue: #0044ff;
-    --button-blue: #4072cf;
-    --button-gray: #bec3c7;
-    --button-red: #dd3939;
-    --card-blue: #313d64;
+    --button-blue: #0952da;
+    --button-gray: #dce0e2;
+    --button-red: #f00d0d;
+    --card-blue: #298eec;
 }
 
 * {
@@ -20,7 +20,7 @@ body {
 
 header {
     background: rgb(13,1,97);
-    background: linear-gradient(90deg, rgba(13,1,97,1) 0%, rgba(11,86,199,1) 41%, rgba(0,199,240,1) 100%);
+    background: linear-gradient(90deg, rgb(21, 2, 150) 0%, rgb(48, 122, 233) 41%, rgb(32, 207, 241) 100%);
     color: white;
     display: flex;
     justify-content: center;
