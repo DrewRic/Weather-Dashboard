@@ -1,6 +1,4 @@
-// const apiKey = '024d76245652e89c24c3b8e04365f5e7'; // Replace with your OpenWeatherMap API key
-// const baseWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather';
-// const baseForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast';
+const apiKey = '024d76245652e89c24c3b8e04365f5e7'; // Replace with your OpenWeatherMap API key
 
 var searchButton = document.getElementById("search-button");
 var clearButton = document.getElementById("clear-button");
@@ -45,35 +43,13 @@ function getHistory()
 
                 let city = buttonList[i].innerHTML;
 
-                //Create an event listener to make the button functional.
-                buttonList[i].addEventListener("click", function(event) {
-                    event.preventDefault();
-                    document.getElementById("forecast-body").style.visibility = "visible";
-                    getTodaysForecast(city);
-                });
-            }
-        }
-    }
-
-    else {
-        historyList = [];
-    }
-}
-
-// Clears user history and local storage when called.
-function clearHistory()
-{
-    localStorage.clear();
-    historyList = [];
-}
-
-
+                //Create an event listener to make the 
 function getTodaysForecast(cityName)
 {
     // CREATES TODAY'S FORECAST
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "024d76245652e89c24c3b8e04365f5e7")
-    .then(response => response.json())
-    .then(data => {  
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
         // Header containing city name, today's date, and weather icon. 
         var cityHeader = document.getElementById("city-header");
         cityHeader.innerHTML = data.name + " (" + getCurrentDate() + ")";
@@ -110,12 +86,11 @@ function getTodaysForecast(cityName)
 }
 
 
-function get5DayForecast(cityName)
-{
-    // CREATES 5 DAY FORECAST
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "024d76245652e89c24c3b8e04365f5e7")
-    .then(response => response.json())
-    .then(data => { 
+function get5DayForecast(cityName) {
+
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
         cityName = data.name;
         var dayCount = 0;
         var dtArray = data.list[0].dt_txt.split(" ");
